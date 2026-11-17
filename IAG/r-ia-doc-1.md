@@ -17,8 +17,7 @@ La segunda fue por una duda al momento de usar curl.
 
 | Fecha | Herramienta | Enlace a prompt | Enlace a respuesta |
 |------------|------------------------|-----------------|-------|
-| 13/11/2026 | Gemini | 
-"Analizar error de Git: `! [rejected] main -> main (fetch first)` y `divergent branches`." | El error ocurre porque el repositorio remoto en GitHub tiene cambios que no están en local.   |
+| 13/11/2026 | Gemini | "Analizar error de Git: `! [rejected] main -> main (fetch first)` y `divergent branches`." | El error ocurre porque el repositorio remoto en GitHub tiene cambios que no están en local.   |
 | 13/11/2026 | Gemini | "como lo soluciono" | "Descarga y fusiona los cabios del servidor "git pull origin main". Vuelve a subir tu trabajo "git push origin main"" |
 | 13/11/2026 | Gemini | "¿Para los comandos curl en la otra pestaña (diferente a donde corre spring boot) debo navegar hasta la carpeta del backend?" | "No es necesario; `curl` es una herramienta global del sistema para peticiones HTTP y funciona desde cualquier directorio, apuntando al puerto `8080` donde corre Spring Boot.  " |
 

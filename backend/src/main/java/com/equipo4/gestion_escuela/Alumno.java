@@ -14,13 +14,15 @@ public class Alumno {
     
     private String nombre;
     private String correo;
+    private String observaciones;
 
     public Alumno() {
     }
 
-    public Alumno(String nombre, String correo) {
+    public Alumno(String nombre, String correo, String observaciones) {
         this.nombre = nombre;
         this.correo = correo;
+        this.observaciones = observaciones;
     }
 
     public Integer getId() {
@@ -45,5 +47,13 @@ public class Alumno {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 }
