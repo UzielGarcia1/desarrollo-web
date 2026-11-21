@@ -39,6 +39,17 @@ especialidad VARCHAR(100),
 FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
+-- Tabla de Administrativos
+CREATE TABLE administrativos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    numero_empleado VARCHAR(20) UNIQUE NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    area VARCHAR(100),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
 -- Tabla de Materias
 CREATE TABLE materias (
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -58,6 +69,7 @@ calificacion DECIMAL(5,2) DEFAULT 0.00,
 FOREIGN KEY (alumno_id) REFERENCES alumnos(id),
 FOREIGN KEY (materia_id) REFERENCES materias(id)
 );
+
 
 -- Insertar los roles iniciales del sistema
 INSERT INTO roles (nombre) VALUES ('ADMINISTRATIVO'), ('MAESTRO'), ('ESTUDIANTE');

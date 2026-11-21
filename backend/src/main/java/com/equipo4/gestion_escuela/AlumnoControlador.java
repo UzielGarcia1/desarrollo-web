@@ -10,7 +10,10 @@ public class AlumnoControlador {
     @Autowired
     IAlumno iAlumno;
 
-    // Ruta GET para listar alumnos 
+    @Autowired
+    ICalificacion iCalificacion;
+
+    // Ruta GET para listar alumnos
     @GetMapping("/alumnos")
     public Iterable<Alumno> listarAlumnos() {
         return iAlumno.findAll();
@@ -25,14 +28,14 @@ public class AlumnoControlador {
     // Ruta PUT para actualizar un alumno
     @PutMapping("/alumnos/{id}")
     public Alumno actualizarAlumno(@PathVariable Integer id, @RequestBody Alumno alumno) {
-        alumno.setId(id); 
+        alumno.setId(id);
         return iAlumno.save(alumno);
     }
-        
+
     // Ruta DELETE para eliminar un alumno
     @DeleteMapping("/alumnos/{id}")
     public void eliminarAlumno(@PathVariable Integer id) {
-        iAlumno.deleteById(id); 
+        iAlumno.deleteById(id);
     }
 
     @GetMapping("/alumnos/buscar/{nombre}")
@@ -40,10 +43,19 @@ public class AlumnoControlador {
         return iAlumno.findByNombre(nombre);
     }
 
-    // Ruta para el filtro por correo completo
-    @GetMapping("/alumnos/buscar/correo/{correo}")
-    public List<Alumno> buscarPorCorreo(@PathVariable String correo) {
-        return iAlumno.findByCorreo(correo);
+    @GetMapping("/alumnos/buscar/matricula/{matricula}")
+    public List<Alumno> buscarPorMatricula(@PathVariable String matricula) {
+        return iAlumno.findByMatricula(matricula);
     }
 
+    // Ruta para el filtro por correo del usuario asociado
+    @GetMapping("/alumnos/buscar/correo/{correo}")
+    public List<Alumno> buscarPorCorreo(@PathVariable String correo) {
+        return iAlumno.findByUsuarioCorreo(correo);
+    }
+
+    @GetMapping("/alumnos/{id}/calificaciones")
+    public List<Calificacion> historialAlumno(@PathVariable Integer id) {
+        return iCalificacion.findByAlumnoId(id);
+    }
 }
