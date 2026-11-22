@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión Escolar - Administrativo</title>
+  <link rel="stylesheet" href="../css/portal.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <h1>Administrativo</h1>
+      <button type="button" class="secundario" id="btn-menu">Menú</button>
+    </header>
+
+    <div id="mensaje" class="mensaje oculto" role="alert" aria-live="polite"></div>
+
+    <!-- 1. Gestión de alumnos -->
+    <section class="card">
+      <h2>1. Gestión de alumnos</h2>
+      <form id="form-admin-alumno">
+        <input type="hidden" id="adm-alumno-id" />
+        <input type="hidden" id="adm-alumno-usuario-id" />
+        <div class="campo">
+          <label for="adm-alumno-matricula">Matrícula</label>
+          <input type="text" id="adm-alumno-matricula" required />
+        </div>
+        <div class="campo">
+          <label for="adm-alumno-nombre">Nombre</label>
+          <input type="text" id="adm-alumno-nombre" required />
+        </div>
+        <div class="campo">
+          <label for="adm-alumno-apellido">Apellido</label>
+          <input type="text" id="adm-alumno-apellido" required />
+        </div>
+        <div class="campo">
+          <label for="adm-alumno-carrera">Carrera</label>
+          <input type="text" id="adm-alumno-carrera" required />
+        </div>
+        <div class="campo">
+          <label for="adm-alumno-semestre">Semestre</label>
+          <input type="number" id="adm-alumno-semestre" min="1" required />
+        </div>
+        <div class="acciones">
+          <button type="submit">Guardar alumno</button>
+          <button type="button" class="secundario" id="btn-limpiar-alumno">Limpiar</button>
+        </div>
+      </form>
+
+      <div class="tabla-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Matrícula</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Carrera</th>
+              <th>Semestre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-admin-alumnos">
+            <tr><td colspan="7" class="centrado">Sin información disponible.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. Gestión de maestros -->
+    <section class="card">
+      <h2>2. Gestión de maestros</h2>
+      <form id="form-admin-maestro">
+        <input type="hidden" id="adm-maestro-id" />
+        <input type="hidden" id="adm-maestro-usuario-id" />
+        <div class="campo">
+          <label for="adm-maestro-emp">Número de empleado</label>
+          <input type="text" id="adm-maestro-emp" required />
+        </div>
+        <div class="campo">
+          <label for="adm-maestro-nombre">Nombre</label>
+          <input type="text" id="adm-maestro-nombre" required />
+        </div>
+        <div class="campo">
+          <label for="adm-maestro-apellido">Apellido</label>
+          <input type="text" id="adm-maestro-apellido" required />
+        </div>
+        <div class="campo">
+          <label for="adm-maestro-esp">Especialidad</label>
+          <input type="text" id="adm-maestro-esp" required />
+        </div>
+        <div class="acciones">
+          <button type="submit">Guardar maestro</button>
+          <button type="button" class="secundario" id="btn-limpiar-maestro">Limpiar</button>
+        </div>
+      </form>
+
+      <div class="tabla-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>No. Empleado</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Especialidad</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-admin-maestros">
+            <tr><td colspan="6" class="centrado">Sin información disponible.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Materias y asignación de maestros -->
+    <section class="card">
+      <h2>3. Materias y asignación de maestros</h2>
+      <form id="form-admin-materia">
+        <input type="hidden" id="adm-materia-id" />
+        <div class="campo">
+          <label for="adm-materia-nombre">Nombre de la materia</label>
+          <input type="text" id="adm-materia-nombre" required />
+        </div>
+        <div class="campo">
+          <label for="adm-materia-carrera">Carrera</label>
+          <input type="text" id="adm-materia-carrera" required />
+        </div>
+        <div class="campo">
+          <label for="adm-materia-creditos">Créditos</label>
+          <input type="number" id="adm-materia-creditos" min="1" required />
+        </div>
+        <div class="campo">
+          <label for="adm-materia-maestro-id">ID de maestro asignado (opcional)</label>
+          <input type="number" id="adm-materia-maestro-id" min="1" placeholder="Ej. 1" />
+        </div>
+        <div class="acciones">
+          <button type="submit">Guardar materia</button>
+          <button type="button" class="secundario" id="btn-limpiar-materia">Limpiar</button>
+        </div>
+      </form>
+
+      <div class="tabla-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Materia</th>
+              <th>Carrera</th>
+              <th>Créditos</th>
+              <th>Maestro asignado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-admin-materias">
+            <tr><td colspan="6" class="centrado">Sin información disponible.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="../javascript/administrativo.js"></script>
+</body>
+</html>
