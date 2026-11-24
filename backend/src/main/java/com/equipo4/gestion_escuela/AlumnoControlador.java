@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class AlumnoControlador {
 
@@ -12,6 +13,19 @@ public class AlumnoControlador {
 
     @Autowired
     ICalificacion iCalificacion;
+
+    @Autowired
+    IUsuario iUsuario;
+
+    private void asociarUsuarioExistente(Alumno alumno) {
+        if (alumno.getUsuario() != null && alumno.getUsuario().getId() != null) {
+            Usuario usuarioBD = iUsuario.findById(alumno.getUsuario().getId())
+                    .orElseThrow(() -> new RuntimeException("No existe el usuario con ID: " + alumno.getUsuario().getId()));
+            alumno.setUsuario(usuarioBD);
+        } else {
+            alumno.setUsuario(null);
+        }
+    }
 
     // Ruta GET para listar alumnos
     @GetMapping("/alumnos")
@@ -22,6 +36,7 @@ public class AlumnoControlador {
     // Ruta POST para registrar un alumno nuevo
     @PostMapping("/alumnos")
     public Alumno guardarAlumno(@RequestBody Alumno alumno) {
+        asociarUsuarioExistente(alumno);
         return iAlumno.save(alumno);
     }
 
@@ -29,6 +44,7 @@ public class AlumnoControlador {
     @PutMapping("/alumnos/{id}")
     public Alumno actualizarAlumno(@PathVariable Integer id, @RequestBody Alumno alumno) {
         alumno.setId(id);
+        asociarUsuarioExistente(alumno);
         return iAlumno.save(alumno);
     }
 
@@ -37,23 +53,7 @@ public class AlumnoControlador {
     public void eliminarAlumno(@PathVariable Integer id) {
         iAlumno.deleteById(id);
     }
-
-    @GetMapping("/alumnos/buscar/{nombre}")
-    public List<Alumno> buscarPorNombre(@PathVariable String nombre) {
-        return iAlumno.findByNombre(nombre);
-    }
-
-    @GetMapping("/alumnos/buscar/matricula/{matricula}")
-    public List<Alumno> buscarPorMatricula(@PathVariable String matricula) {
-        return iAlumno.findByMatricula(matricula);
-    }
-
-    // Ruta para el filtro por correo del usuario asociado
-    @GetMapping("/alumnos/buscar/correo/{correo}")
-    public List<Alumno> buscarPorCorreo(@PathVariable String correo) {
-        return iAlumno.findByUsuarioCorreo(correo);
-    }
-
+    
     @GetMapping("/alumnos/{id}/calificaciones")
     public List<Calificacion> historialAlumno(@PathVariable Integer id) {
         return iCalificacion.findByAlumnoId(id);

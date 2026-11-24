@@ -2,8 +2,9 @@ package com.equipo4.gestion_escuela;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
+
+@CrossOrigin(origins = "*")
 @RestController
 public class AdministrativoControlador {
 
@@ -34,13 +35,4 @@ public class AdministrativoControlador {
         iAdministrativo.deleteById(id);
     }
 
-    @GetMapping("/administrativos/buscar/{nombre}")
-    public List<Administrativo> buscarPorNombre(@PathVariable String nombre) {
-        return iAdministrativo.findByNombre(nombre);
-    }
-
-    @GetMapping("/administrativos/buscar/empleado/{numeroEmpleado}")
-    public List<Administrativo> buscarPorNumeroEmpleado(@PathVariable String numeroEmpleado) {
-        return iAdministrativo.findByNumeroEmpleado(numeroEmpleado);
-    }
 }

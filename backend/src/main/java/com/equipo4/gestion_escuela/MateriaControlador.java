@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class MateriaControlador {
 
@@ -32,11 +33,6 @@ public class MateriaControlador {
     @DeleteMapping("/materias/{id}")
     public void eliminarMateria(@PathVariable Integer id) {
         iMateria.deleteById(id);
-    }
-
-    @GetMapping("/materias/buscar/{nombre}")
-    public List<Materia> buscarPorNombre(@PathVariable String nombre) {
-        return iMateria.findByNombre(nombre);
     }
 
     @GetMapping("/materias/{id}/calificaciones")

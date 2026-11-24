@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class MaestroControlador {
 
@@ -34,20 +35,6 @@ public class MaestroControlador {
         iMaestro.deleteById(id);
     }
 
-    @GetMapping("/maestros/buscar/{nombre}")
-    public List<Maestro> buscarPorNombre(@PathVariable String nombre) {
-        return iMaestro.findByNombre(nombre);
-    }
-
-    @GetMapping("/maestros/buscar/empleado/{numeroEmpleado}")
-    public List<Maestro> buscarPorNumeroEmpleado(@PathVariable String numeroEmpleado) {
-        return iMaestro.findByNumeroEmpleado(numeroEmpleado);
-    }
-
-    @GetMapping("/maestros/buscar/correo/{correo}")
-    public List<Maestro> buscarPorCorreo(@PathVariable String correo) {
-        return iMaestro.findByUsuarioCorreo(correo);
-    }
 
     @GetMapping("/maestros/{id}/materias")
     public List<Materia> materiasDeMaestro(@PathVariable Integer id) {
